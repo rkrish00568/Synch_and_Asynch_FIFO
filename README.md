@@ -34,11 +34,40 @@ The repository includes:
 
 ## FIFO Architecture
 
-### Synchronous FIFO
+## Synchronous FIFO 
 
-- Write and read operations occur using the same clock.
-- Uses binary read and write pointers.
-- Suitable for systems operating within a single clock domain.
+The synchronous FIFO uses a **single clock** for both read and write operations. Data is stored in a FIFO memory array, while separate read and write pointers manage data access. The design uses an extra pointer bit to distinguish between **full** and **empty** conditions and operates as a **circular buffer**.
+
+### Key Components
+
+* FIFO Memory Array
+* Write Pointer
+* Read Pointer
+* Full Detection Logic
+* Empty Detection Logic
+
+### Circular Buffer Operation
+
+The FIFO is implemented as a circular buffer. The read and write pointers continuously increment, while only their lower address bits are used to access memory locations. When the last memory location is reached, the pointers automatically wrap around to the beginning of the FIFO.
+
+### Full Condition
+
+The FIFO is considered **full** when the write pointer catches up to the read pointer after completing one wrap-around cycle. This is detected by comparing the pointers and inverting the most significant bit (MSB) of the read pointer.
+
+```verilog
+assign full = (write_pointer ==
+              {~read_pointer[FIFO_DEPTH_LOG],
+               read_pointer[FIFO_DEPTH_LOG-1:0]});
+```
+
+### Empty Condition
+
+The FIFO is considered **empty** when the read and write pointers are equal, indicating that there is no valid data available for reading.
+
+```verilog
+assign empty = (read_pointer == write_pointer);
+```
+
 
 ### Asynchronous FIFO
 

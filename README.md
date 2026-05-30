@@ -95,7 +95,7 @@ Synchronous FIFO Waveform
 
 The waveform below demonstrates successful write and read operations along with proper assertion of the Full and Empty flags.
 
-![Synchronous FIFO Waveform](waveforms/sync_fifo_waveform.png)
+![Synchronous FIFO Waveform](Synchronous_Results/synch_waveform.png)
 
 
 
@@ -104,4 +104,6 @@ Asynchronous FIFO Waveform
 
 The waveform below demonstrates data transfer between independent read and write clock domains, along with correct pointer synchronization and flag generation.
 
-![Asynchronous FIFO Waveform](waveforms/async_fifo_waveform.png)
+![Asynchronous FIFO Waveform](ASYNCHRONOUS_RESULT/asynch_fifo.png)
+![Asynchronous FIFO Waveform](ASYNCHRONOUS_RESULT/asynch_fifo2.png)
+![Asynchronous FIFO Waveform](ASYNCHRONOUS_RESULT/asynch_fifo3.png)

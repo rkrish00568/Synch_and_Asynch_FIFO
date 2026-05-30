@@ -9,7 +9,7 @@ The repository includes:
 - Verilog source code for Asynchronous FIFO
 - Testbenches for functional verification
 - Simulation waveforms
-- FIFO status flag generation (Full, Empty, etc.)
+
 
 ---
 

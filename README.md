@@ -90,21 +90,5 @@ The module implements a write pointer for a FIFO with a full flag. The write poi
 
 ---
 
-## Project Structure
+## Simulation Waveforms
 
-```text
-├── Synchronous_FIFO/
-│   ├── fifo.v
-│   ├── fifo_tb.v
-│   └── Waveforms/
-│
-├── Asynchronous_FIFO/
-│   ├── fifo_mem.v
-│   ├── sync_r2w.v
-│   ├── sync_w2r.v
-│   ├── rptr_empty.v
-│   ├── wptr_full.v
-│   ├── fifo_tb.v
-│   └── Waveforms/
-│
-└── README.md

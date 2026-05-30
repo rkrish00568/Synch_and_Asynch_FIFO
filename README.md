@@ -91,7 +91,7 @@ The module implements a write pointer for a FIFO with a full flag. The write poi
 ---
 
 ## Simulation Waveforms
-Synchronous FIFO Waveform
+### Synchronous FIFO Waveform
 
 The waveform below demonstrates successful write and read operations along with proper assertion of the Full and Empty flags.
 
@@ -100,7 +100,7 @@ The waveform below demonstrates successful write and read operations along with 
 
 
 
-Asynchronous FIFO Waveform
+### Asynchronous FIFO Waveform
 
 The waveform below demonstrates data transfer between independent read and write clock domains, along with correct pointer synchronization and flag generation.
 

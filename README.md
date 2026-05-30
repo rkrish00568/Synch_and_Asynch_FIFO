@@ -69,12 +69,24 @@ assign empty = (read_pointer == write_pointer);
 ```
 
 
-### Asynchronous FIFO
+## Asynchronous FIFO
+### FIFO.v
 
-- Write and read operations occur using different clocks.
-- Uses Gray-coded pointers for safe clock domain crossing.
-- Includes pointer synchronization modules.
-- Commonly used for communication between different clock domains.
+This module is a FIFO implementation with configurable data and address sizes. It consists of a memory module, read and write pointer handling modules, and read and write pointer synchronization modules. The read and write pointers are synchronized to the respective clock domains, and the read and write pointers are checked for empty and full conditions, respectively. The FIFO memory module stores the data and handles the read and write operations.
+
+### FIFO_memory.v
+
+The module has a memory array (mem) with a depth of 2^ADDR_SIZE. The read and write addresses are used to access the memory array. The write clock enable (wclk_en) and write full (wfull) signals are used to control the writing process. The write data is stored in the memory array on the rising edge of the write clock (wclk)
+
+### two_ff_sync.v
+The module has two flip-flops, q1 and q2, which store the input data (din) of size SIZE. On each clock cycle, the data is shifted from q1 to q2, and new data is loaded into q1. The reset signal (rst_n) is active low, meaning the FIFO is reset when rst_n is low
+
+### rptr_empty.v
+
+The module implements a read pointer for a FIFO with an empty flag. The read pointer is implemented in grey code to avoid glitches when transitioning clock domains. The read pointer is incremented based on the read increment signal and the empty flag. The empty flag is set when the read pointer is equal to the write pointer, indicating that the FIFO is empty. The read pointer and empty flag are updated on each clock cycle, and the read address is calculated from the read pointer.
+
+### wptr_full.v
+The module implements a write pointer for a FIFO with a full flag. The write pointer is implemented in gray code to avoid glitches when transitioning between clock domains. The write pointer is incremented based on the write increment signal and the full flag. The full flag is set when the write pointer is equal to the read pointer, indicating that the FIFO is full. The write pointer and full flag are updated on each clock cycle, and the write address is calculated from the write pointer.
 
 ---
 
